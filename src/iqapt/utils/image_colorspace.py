@@ -1,4 +1,3 @@
-from .utils import check_img_size
 import torch
 
 __all__ = ['rgb_to_gray']

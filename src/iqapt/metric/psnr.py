@@ -1,6 +1,6 @@
 from .metric import SingleImageMetric, torch
 from .mse import MSE
-from . import utils
+from .. import utils
 
 __all__ = ['PSNR']
 

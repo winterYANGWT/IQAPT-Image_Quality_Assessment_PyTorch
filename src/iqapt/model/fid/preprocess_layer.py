@@ -1,5 +1,3 @@
-from turtle import forward
-from matplotlib import image
 import torch.nn.functional as F
 import torch.nn as nn
 

@@ -17,8 +17,7 @@ def sqrtm_newton_schulz(matrix, num_iters=100):
     based on https://github.com/msubhransu/matrix-sqrt/blob/master/matrix_sqrt.py
     '''
     device = get_device(matrix)
-    dtype = torch.float64
-    matrix = matrix.to(dtype)
+    dtype=matrix.dtype
     dim = matrix.shape[0]
     norm = matrix.norm(p='fro')
     Y = matrix.div(norm)

@@ -3,7 +3,7 @@ import torchvision as tv
 from collections import namedtuple
 
 
-class Vgg16(torch.nn.Module):
+class Vgg(torch.nn.Module):
     def __init__(self, pretrained=True):
         super().__init__()
         vgg_pretrained_features = tv.models.vgg16(pretrained=pretrained,

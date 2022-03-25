@@ -21,6 +21,8 @@ class SingleImageMetric(nn.Module):
             msg = 'the shape of images_a and images_b should be (N, C, H, W).'
             raise ValueError(msg)
 
+        images_a=images_a.to(torch.float64)
+        images_b=images_b.to(torch.float64)
         results = self.calc(images_a, images_b)
         return results
 
@@ -31,6 +33,7 @@ class SingleImageMetric(nn.Module):
         '''
         msg = 'calc should be implemented by subclass.'
         raise NotImplementedError(msg)
+
 
 
 class MultiImageMetric(nn.Module):
@@ -69,6 +72,8 @@ class MultiImageMetric(nn.Module):
             msg = f'the shape of {name} should be (N, C, H, W).'
             raise ValueError(msg)
 
+        images=images.to(torch.float64)
+
         for i in range(math.ceil(N / self.num_batch)):
             start_index = max(0, i * self.num_batch)
             end_index = min((i + 1) * self.num_batch, N)
@@ -87,6 +92,7 @@ class MultiImageMetric(nn.Module):
                 raise ValueError(msg)
 
         for image in images:
+            image=image.to(torch.float64)
             feature = self.calc_features(image.unsqueeze(0))
             features.append(feature)
 

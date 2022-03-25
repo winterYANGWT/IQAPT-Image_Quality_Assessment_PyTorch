@@ -1,5 +1,5 @@
-from re import A
 from .metric import SingleImageMetric, torch
+import einops
 
 __all__ = ['MSE']
 
@@ -11,6 +11,6 @@ class MSE(SingleImageMetric):
     def calc(self, images_a: torch.Tensor,
              images_b: torch.Tensor) -> torch.Tensor:
         N, C, H, W = images_a.shape
-        diff = (images_a - images_b)**2 / (C * H * W)
-        mse = torch.einsum('NCHW->N', diff)
+        diff = (images_a - images_b)**2
+        mse=einops.reduce(diff,'N C H W->N','mean')
         return mse

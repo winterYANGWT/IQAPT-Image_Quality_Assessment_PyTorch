@@ -13,7 +13,7 @@ class FID(MultiImageMetric):
         self.preprocess = fid.PreprocessLayer()
         self.inception = fid.InceptionV3()
         self.preprocess = self.preprocess.to(torch.float64)
-        self.inception = self.preprocess.to(torch.float64)
+        self.inception = self.inception.to(torch.float64)
         self.inception.eval()
 
     def calc(self, features_a: torch.Tensor,
